@@ -1,5 +1,6 @@
 package test
 
+import util.control.Breaks._
 object use_iterator {
   def main(args:Array[String]) = {
       val ita = Iterator(3,5,7,8,9)
@@ -7,10 +8,17 @@ object use_iterator {
       while (ita.hasNext)
         println(ita.next())
 
+       var c:Int = 0
 //      val itb = Iterator("hello", "shi")
       val itc = Iterator.iterate("he") { i =>
+        c = c + 1
+        breakable {
+          if (c > 10)
+            break
+        }
         println("process " + i )
         i + "."
+
       }
 
       while (itc.hasNext)

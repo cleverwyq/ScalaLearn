@@ -10,7 +10,7 @@ object paritalfunc {
 
       val part:PartialFunction[Int, String] = {
         case x if x % 2 == 0 => s"$x is even"
-//        case x =>  x + " not satisfy"
+        case x =>  x + " not satisfy"
       }
       val sample = 1 to 10
 
@@ -26,12 +26,23 @@ object paritalfunc {
         }
 
         override def apply(v1: Int): String = {
-          v1 + "," + "is satisfy"
+          var s = ""
+          if (this.isDefinedAt(v1))
+            s = "is satisfy"
+          else
+            s = "not satisfy"
+          v1 + "," + s
         }
       }
 
       sample map part2 foreach println
+     println()
+    sample collect part2 foreach println
 
-      println(part5(0))
+      println("part2.lift :")
+      println(part2.lift(8))       //Some(8, is satisfy)
+      println(part2.lift(3))        //None
+    println(part2.lift(4))        //None
+    println(part5(0))
   }
 }

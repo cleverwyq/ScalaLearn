@@ -5,3 +5,5 @@ for (Some(i) <- s withFilter {
   case _ =>false
 }
 ) yield (i * 2)
+
+println("hi")
